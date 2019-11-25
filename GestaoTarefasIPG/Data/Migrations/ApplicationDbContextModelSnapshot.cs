@@ -38,6 +38,7 @@ namespace GestaoTarefasIPG.Data.Migrations
 
                     b.ToTable("Cargo");
 
+                });
             modelBuilder.Entity("GestaoTarefasIPG.Models.Escola", b =>
                 {
                     b.Property<int>("EscolaID")
