@@ -12,5 +12,6 @@ namespace GestaoTarefasIPG.Data
             : base(options)
         {
         }
+        public DbSet<GestaoTarefasIPG.Models.Cargo> Cargo { get; set; }
     }
 }
