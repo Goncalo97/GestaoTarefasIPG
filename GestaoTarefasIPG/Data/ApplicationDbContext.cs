@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using GestaoTarefasIPG.Models;
 
 namespace GestaoTarefasIPG.Data
 {
@@ -13,5 +14,6 @@ namespace GestaoTarefasIPG.Data
         {
         }
         public DbSet<GestaoTarefasIPG.Models.Cargo> Cargo { get; set; }
+        public DbSet<GestaoTarefasIPG.Models.Escola> Escola { get; set; }
     }
 }
