@@ -15,5 +15,6 @@ namespace GestaoTarefasIPG.Data
         }
         public DbSet<GestaoTarefasIPG.Models.Cargo> Cargo { get; set; }
         public DbSet<GestaoTarefasIPG.Models.Escola> Escola { get; set; }
+        public DbSet<GestaoTarefasIPG.Models.Servico> Servico { get; set; }
     }
 }
