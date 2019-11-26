@@ -12,6 +12,7 @@ using GestaoTarefasIPG.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using GestaoTarefasIPG.Models;
 
 namespace GestaoTarefasIPG
 {
@@ -65,6 +66,16 @@ namespace GestaoTarefasIPG
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            if (env.IsDevelopment())
+            {
+                using (var serviceScope = app.ApplicationServices.CreateScope())
+                {
+                    var db = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+
+                    SeedData.Populate(db);
+                }
+            }
         }
     }
 }
