@@ -11,6 +11,7 @@ namespace GestaoTarefasIPG.Models
         public static void Populate(GestaoTarefasIPGDbContext db)
         {
             PopulateEscolas(db);
+            PopulateCargos(db);
         }
 
         private static void PopulateEscolas(GestaoTarefasIPGDbContext db)
@@ -63,6 +64,21 @@ namespace GestaoTarefasIPG.Models
             );
 
             db.SaveChanges();
+        }
+        private static void PopulateCargos(GestaoTarefasIPGDbContext db)
+        {
+            if (db.Cargo.Any()) return;
+
+            db.Cargo.AddRange(
+                new Cargo { NomeCargo = "Presidente", NivelCargo = "4" },
+                new Cargo { NomeCargo = "Professor", NivelCargo = "2" },
+                new Cargo { NomeCargo = "Funcionario Limpezas", NivelCargo = "1" },
+                new Cargo { NomeCargo = "Segurança", NivelCargo = "1" },
+                new Cargo { NomeCargo = "Funcionario Secretaria", NivelCargo = "2" }
+            );
+
+            db.SaveChanges();
+
         }
     }
 }
