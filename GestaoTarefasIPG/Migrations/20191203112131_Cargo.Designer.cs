@@ -2,14 +2,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GestaoTarefasIPG.Migrations
 {
     [DbContext(typeof(GestaoTarefasIPGDbContext))]
-    partial class GestaoTarefasIPGDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191203112131_Cargo")]
+    partial class Cargo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,22 +61,6 @@ namespace GestaoTarefasIPG.Migrations
                     b.HasKey("EscolaID");
 
                     b.ToTable("Escola");
-                });
-
-            modelBuilder.Entity("GestaoTarefasIPG.Models.Servico", b =>
-                {
-                    b.Property<int>("ServicoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ServicoId");
-
-                    b.ToTable("Servico");
                 });
 #pragma warning restore 612, 618
         }
