@@ -7,8 +7,8 @@ namespace GestaoTarefasIPG.Models
 {
     public class EFGestaoTarefasIPGRepository : IGestaoTarefasIPGRepository
     {
-        private Data.ApplicationDbContext db;
-        public EFGestaoTarefasIPGRepository(Data.ApplicationDbContext db)
+        private GestaoTarefasIPGDbContext db;
+        public EFGestaoTarefasIPGRepository(GestaoTarefasIPGDbContext db)
         {
             this.db = db;
         }

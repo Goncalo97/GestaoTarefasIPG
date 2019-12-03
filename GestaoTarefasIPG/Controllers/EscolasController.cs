@@ -11,17 +11,11 @@ namespace GestaoTarefasIPG.Controllers
 {
     public class EscolasController : Controller
     {
-        private const int NUMBER_PRODUCTS_PER_PAGE = 4;
-        private const int NUMBER_PAGES_BEFORE_AND_AFTER = 5;
+        private readonly GestaoTarefasIPGDbContext _context;
 
-        private IGestaoTarefasIPGRepository repository;
-        public EscolasController(IGestaoTarefasIPGRepository repository)
-        {
-            this.repository = repository;
-        }
-
-        
-
+        private const int NUMBER_PRODUCTS_PER_PAGE = 10;
+        private const int NUMBER_PAGES_BEFORE_AND_AFTER = 3;
+          
         public EscolasController(GestaoTarefasIPGDbContext context)
         {
             _context = context;
@@ -34,14 +28,14 @@ namespace GestaoTarefasIPG.Controllers
             return View(await _context.Escola.ToListAsync());
         }
         */
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            int page = 1;
-            decimal numberProducts = repository.Escola.Count();
+            //int page = 1;
+            decimal numberProducts = _context.Escola.Count();
             EscolasViewModel vm = new EscolasViewModel // create a view with this 
             {
-                Escolas = repository.Escola
-                .OrderBy(p => p.Nome)
+                Escolas = _context.Escola
+                //.OrderBy(p => p.Nome)
                 .Skip((page - 1) * NUMBER_PRODUCTS_PER_PAGE)
                 .Take(NUMBER_PRODUCTS_PER_PAGE),
                 CurrentPage = page,
