@@ -13,15 +13,29 @@ namespace GestaoTarefasIPG.Controllers
     {
         private readonly GestaoTarefasIPGDbContext _context;
 
+        private const int NUMBER_OF_PRODUCTS_PER_PAGE = 15;
+        private const int NUMBER_OF_PAGES_BEFORE_AND_AFTER = 2;
+
         public ServicosController(GestaoTarefasIPGDbContext context)
         {
             _context = context;
         }
 
         // GET: Servicos
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int page = 1)
         {
-            return View(await _context.Servico.ToListAsync());
+            decimal numberProducts = _context.Servico.Count();
+            ServicosViewModel vm = new ServicosViewModel
+            {
+                Servicos = _context.Servico
+                .Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE)
+                .Take(NUMBER_OF_PRODUCTS_PER_PAGE),
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_OF_PRODUCTS_PER_PAGE),
+                FirstPageShow = Math.Max(1, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),
+            };
+            vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_OF_PAGES_BEFORE_AND_AFTER);
+            return View(vm);
         }
 
         // GET: Servicos/Details/5
