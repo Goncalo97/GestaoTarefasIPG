@@ -22,12 +22,6 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Escolas
-        /*
-         * public async Task<IActionResult> Index()
-        {
-            return View(await _context.Escola.ToListAsync());
-        }
-        */
         public IActionResult Index(int page = 1)
         {
             //int page = 1;
