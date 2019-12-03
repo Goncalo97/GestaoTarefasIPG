@@ -8,12 +8,12 @@ namespace GestaoTarefasIPG.Models
     public class SeedData
     {
 
-        public static void Populate(Data.ApplicationDbContext db)
+        public static void Populate(GestaoTarefasIPGDbContext db)
         {
             PopulateEscolas(db);
         }
 
-        private static void PopulateEscolas(Data.ApplicationDbContext db)
+        private static void PopulateEscolas(GestaoTarefasIPGDbContext db)
         {
             if (db.Escola.Any()) return;
 

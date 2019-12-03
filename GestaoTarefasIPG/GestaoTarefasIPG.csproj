@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-GestaoTarefasIPG-E566676B-50E5-4986-AB5E-15FD59C38B1D</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20191203111636_Servico.cs" />
+    <Compile Remove="Migrations\20191203111636_Servico.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />

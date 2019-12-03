@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GestaoTarefasIPG.Data;
 using GestaoTarefasIPG.Models;
 
 namespace GestaoTarefasIPG.Controllers
 {
     public class CargosController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly GestaoTarefasIPGDbContext _context;
 
-        public CargosController(ApplicationDbContext context)
+        public CargosController(GestaoTarefasIPGDbContext context)
         {
             _context = context;
         }
@@ -23,8 +22,6 @@ namespace GestaoTarefasIPG.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Cargo.ToListAsync());
-
-
         }
 
         // GET: Cargos/Details/5

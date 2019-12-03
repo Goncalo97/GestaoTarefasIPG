@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GestaoTarefasIPG.Data;
 using GestaoTarefasIPG.Models;
 
 namespace GestaoTarefasIPG.Controllers
@@ -21,9 +20,9 @@ namespace GestaoTarefasIPG.Controllers
             this.repository = repository;
         }
 
-        private readonly ApplicationDbContext _context;
+        
 
-        public EscolasController(ApplicationDbContext context)
+        public EscolasController(GestaoTarefasIPGDbContext context)
         {
             _context = context;
         }
