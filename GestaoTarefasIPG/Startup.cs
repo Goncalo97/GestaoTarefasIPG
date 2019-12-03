@@ -71,6 +71,15 @@ namespace GestaoTarefasIPG
                 endpoints.MapRazorPages();
             });
 
+            if (env.IsDevelopment())
+            {
+                using (var serviceScope = app.ApplicationServices.CreateScope())
+                {
+                    var db = serviceScope.ServiceProvider.GetService<GestaoTarefasIPGDbContext>();
+
+                    SeedData.Populate(db);
+                }
+            }
         }
     }
 }
