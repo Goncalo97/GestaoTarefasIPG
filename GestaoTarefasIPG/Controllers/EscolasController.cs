@@ -13,8 +13,8 @@ namespace GestaoTarefasIPG.Controllers
     {
         private readonly GestaoTarefasIPGDbContext _context;
 
-        private const int NUMBER_PRODUCTS_PER_PAGE = 10;
-        private const int NUMBER_PAGES_BEFORE_AND_AFTER = 3;
+        private const int NUMBER_OF_PRODUCTS_PER_PAGE = 10;
+        private const int NUMBER_OF_PAGES_BEFORE_AND_AFTER = 3;
           
         public EscolasController(GestaoTarefasIPGDbContext context)
         {
@@ -24,23 +24,18 @@ namespace GestaoTarefasIPG.Controllers
         // GET: Escolas
         public IActionResult Index(int page = 1)
         {
-            //int page = 1;
             decimal numberProducts = _context.Escola.Count();
-            EscolasViewModel vm = new EscolasViewModel // create a view with this 
+            EscolasViewModel vm = new EscolasViewModel 
             {
                 Escolas = _context.Escola
                 //.OrderBy(p => p.Nome)
-                .Skip((page - 1) * NUMBER_PRODUCTS_PER_PAGE)
-                .Take(NUMBER_PRODUCTS_PER_PAGE),
+                .Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE)
+                .Take(NUMBER_OF_PRODUCTS_PER_PAGE),
                 CurrentPage = page,
-                //TotalPages = 500,
-                TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_PRODUCTS_PER_PAGE), // higher integer
-                FirstPageShow = Math.Max(1, page - NUMBER_PAGES_BEFORE_AND_AFTER), // i'm on page 2 then i subtract 5 ... 2 - 3 = -3  .. 8 - 5 = 3 ..  .. first page to show is never below one (1)
-                // LastPageShow = Math.Min(1, page - NUMBER_PAGES_BEFORE_AND_AFTER) // cannot access TotalPages here
-                // TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_PRODUCTS_PER_PAGE) // higher integer
-            };  // 3 / 4 .. 4
-            // if ()
-            vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_PAGES_BEFORE_AND_AFTER);
+                TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_OF_PRODUCTS_PER_PAGE),
+                FirstPageShow = Math.Max(1, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),            
+            };  
+            vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_OF_PAGES_BEFORE_AND_AFTER);
             return View(vm);
         }
 
