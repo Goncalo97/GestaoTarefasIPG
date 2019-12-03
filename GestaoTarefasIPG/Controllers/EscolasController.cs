@@ -13,15 +13,30 @@ namespace GestaoTarefasIPG.Controllers
     {
         private readonly GestaoTarefasIPGDbContext _context;
 
+        private const int NUMBER_OF_PRODUCTS_PER_PAGE = 10;
+        private const int NUMBER_OF_PAGES_BEFORE_AND_AFTER = 3;
+          
         public EscolasController(GestaoTarefasIPGDbContext context)
         {
             _context = context;
         }
 
         // GET: Escolas
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int page = 1)
         {
-            return View(await _context.Escola.ToListAsync());
+            decimal numberProducts = _context.Escola.Count();
+            EscolasViewModel vm = new EscolasViewModel 
+            {
+                Escolas = _context.Escola
+                //.OrderBy(p => p.Nome)
+                .Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE)
+                .Take(NUMBER_OF_PRODUCTS_PER_PAGE),
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_OF_PRODUCTS_PER_PAGE),
+                FirstPageShow = Math.Max(1, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),            
+            };  
+            vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_OF_PAGES_BEFORE_AND_AFTER);
+            return View(vm);
         }
 
         // GET: Escolas/Details/5
