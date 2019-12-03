@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace GestaoTarefasIPG.Data.Migrations
+namespace GestaoTarefasIPG.Migrations
 {
-    public partial class Escolas : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,8 @@ namespace GestaoTarefasIPG.Data.Migrations
                 {
                     EscolaID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(nullable: true),
-                    Localizacao = table.Column<string>(nullable: true),
+                    Nome = table.Column<string>(maxLength: 248, nullable: false),
+                    Localizacao = table.Column<string>(nullable: false),
                     Descricao = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

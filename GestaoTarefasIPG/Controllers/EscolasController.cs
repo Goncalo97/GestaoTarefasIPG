@@ -5,16 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GestaoTarefasIPG.Data;
 using GestaoTarefasIPG.Models;
 
 namespace GestaoTarefasIPG.Controllers
 {
     public class EscolasController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly GestaoTarefasIPGDbContext _context;
 
-        public EscolasController(ApplicationDbContext context)
+        public EscolasController(GestaoTarefasIPGDbContext context)
         {
             _context = context;
         }
