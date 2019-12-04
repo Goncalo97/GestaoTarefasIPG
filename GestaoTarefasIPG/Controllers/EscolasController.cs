@@ -33,9 +33,11 @@ namespace GestaoTarefasIPG.Controllers
                 .Take(NUMBER_OF_PRODUCTS_PER_PAGE),
                 CurrentPage = page,
                 TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_OF_PRODUCTS_PER_PAGE),
-                FirstPageShow = Math.Max(1, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),            
+                FirstPageShow = Math.Max(1, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),      
             };  
             vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_OF_PAGES_BEFORE_AND_AFTER);
+            vm.FirstPage = 1;
+            vm.LastPage = vm.TotalPages;
             return View(vm);
         }
 
