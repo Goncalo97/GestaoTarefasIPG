@@ -73,7 +73,7 @@ namespace GestaoTarefasIPG.Controllers
             {
                 _context.Add(servico);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View("Sucesso");
             }
             return View(servico);
         }
