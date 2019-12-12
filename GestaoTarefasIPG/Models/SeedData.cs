@@ -20,6 +20,46 @@ namespace GestaoTarefasIPG.Models
             if (db.Escola.Any()) return;
 
             db.Escola.AddRange(
+                /*
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "2", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "3", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "4", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "5", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "7", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "8", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "9", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "10", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "11", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "12", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "13", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "14", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "7", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "8", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "9", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "10", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "11", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "12", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "13", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "14", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "6", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" }
+                */
+                
                 new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "Guarda", Descricao = "Onde se faz" },
                 new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
                 new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
@@ -84,6 +124,7 @@ namespace GestaoTarefasIPG.Models
                 new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
                 new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
                 new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" }
+                
             );
             db.SaveChanges();
         }
