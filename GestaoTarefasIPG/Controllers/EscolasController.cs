@@ -22,22 +22,37 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Escolas
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(int page = 1, string sortOrder = null)
         {
             decimal numberProducts = _context.Escola.Count();
             EscolasViewModel vm = new EscolasViewModel 
             {
                 Escolas = _context.Escola
                 //.OrderBy(p => p.Nome)
-                .Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE)
-                .Take(NUMBER_OF_PRODUCTS_PER_PAGE),
+                //.Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE)
+                .Take((int)numberProducts),
                 CurrentPage = page,
                 TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_OF_PRODUCTS_PER_PAGE),
                 FirstPageShow = Math.Max(1, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),      
-            };  
+            };
+            vm.Escolas = vm.Escolas.Take((int)numberProducts);
+            switch (sortOrder)
+            {
+                case "Nome":
+                    vm.Escolas = vm.Escolas.OrderByDescending(s => s.Nome);
+                    break;
+                case "Local":
+                    vm.Escolas = vm.Escolas.OrderBy(s => s.Localizacao);
+                    break;
+            }
+            vm.Escolas = vm.Escolas.Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE);
+            vm.Escolas = vm.Escolas.Take(NUMBER_OF_PRODUCTS_PER_PAGE);
             vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_OF_PAGES_BEFORE_AND_AFTER);
             vm.FirstPage = 1;
             vm.LastPage = vm.TotalPages;
+            //string nome = _context.Servico.Find().Nome;
+            //var escola = _context.Escola
+                .FirstOrDefault(m => m.Nome == nome);
             return View(vm);
         }
 

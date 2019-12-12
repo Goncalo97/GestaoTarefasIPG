@@ -18,10 +18,10 @@
     <thead>
         <tr>
             <th scope="col">
-                Nome:
+                @Html.ActionLink("Nome:", "Index", new { sortOrder = "Nome", page = Model.CurrentPage })
             </th>
             <th scope="col">
-                Localização:
+                @Html.ActionLink("Localização:", "Index", new { sortOrder = "Local", page = Model.CurrentPage })
             </th>
             <th scope="col">
                 Descrição:
