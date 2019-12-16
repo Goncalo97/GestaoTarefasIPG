@@ -14,7 +14,7 @@ namespace GestaoTarefasIPG.Controllers
         private readonly GestaoTarefasIPGDbContext _context;
 
         private const int NUMBER_OF_PRODUCTS_PER_PAGE = 10;
-        private const int NUMBER_OF_PAGES_BEFORE_AND_AFTER = 3;
+        private const int NUMBER_OF_PAGES_BEFORE_AND_AFTER = 1;
           
         public EscolasController(GestaoTarefasIPGDbContext context)
         {
@@ -22,19 +22,34 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Escolas
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(int page = 1, string sortOrder = null)
         {
             decimal numberProducts = _context.Escola.Count();
             EscolasViewModel vm = new EscolasViewModel 
             {
                 Escolas = _context.Escola
-                //.OrderBy(p => p.Nome)
-                .Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE)
-                .Take(NUMBER_OF_PRODUCTS_PER_PAGE),
+                .Take((int)numberProducts),
                 CurrentPage = page,
                 TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_OF_PRODUCTS_PER_PAGE),
-                FirstPageShow = Math.Max(1, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),      
-            };  
+                FirstPageShow = Math.Max(2, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),      
+            };
+            switch (sortOrder)
+            {
+                case "Nome":
+                    vm.Escolas = vm.Escolas.OrderBy(p => p.Nome); // ascending by default
+                    vm.CurrentSortOrder = "Nome";
+                    break;
+                case "Localizacao":
+                    vm.Escolas = vm.Escolas.OrderBy(p => p.Localizacao);
+                    vm.CurrentSortOrder = "Localizacao";
+                    break;
+                case "Descricao":
+                    vm.Escolas = vm.Escolas.OrderBy(p => p.Descricao);
+                    vm.CurrentSortOrder = "Descricao";
+                    break;
+            }
+            vm.Escolas = vm.Escolas.Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE);
+            vm.Escolas = vm.Escolas.Take(NUMBER_OF_PRODUCTS_PER_PAGE);
             vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_OF_PAGES_BEFORE_AND_AFTER);
             vm.FirstPage = 1;
             vm.LastPage = vm.TotalPages;

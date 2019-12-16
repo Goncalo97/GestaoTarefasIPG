@@ -1,14 +1,10 @@
-﻿@*
-    @model IEnumerable<GestaoTarefasIPG.Models.Escola>
-*@
-
-@model EscolasViewModel
+﻿@model EscolasViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Escolas</h1>
 
 <p>
     <a asp-action="Create">Criar Novo</a>
@@ -18,13 +14,13 @@
     <thead>
         <tr>
             <th scope="col">
-                Nome:
+                @Html.ActionLink("Nome:", "Index", new { sortOrder = "Nome", page = Model.CurrentPage })
             </th>
             <th scope="col">
-                Localização:
+                @Html.ActionLink("Localização:", "Index", new { sortOrder = "Localizacao", page = Model.CurrentPage })
             </th>
             <th scope="col">
-                Descrição:
+                @Html.ActionLink("Descrição:", "Index", new { sortOrder = "Descricao", page = Model.CurrentPage })
             </th>
             <th></th>
         </tr>
@@ -57,24 +53,23 @@
 
 @if (Model.FirstPage != Model.FirstPageShow)
 {
-    <a asp-action="Index" asp-route-page="@Model.FirstPage" class="btn btn-outline-warning">@Model.FirstPage</a>
+    @Html.ActionLink("" + Model.FirstPage, "Index", new { sortOrder = Model.CurrentSortOrder, page = Model.FirstPage }, new { @class = "btn btn-outline-warning" })
 }
 
 @for (int i = Model.FirstPageShow; i <= Model.LastPageShow; i++)
 {
     @if (i == Model.CurrentPage)
     {
-        <!--<a href="#">@i</a>-->
-        <!--<a asp-action="Index" asp-route-page="@i" class="btn btn-outline-info">@i</a>-->
-        <a href="#" class="btn btn-primary">@i</a>
+        @Html.ActionLink("" + i, "#", new { sortOrder = Model.CurrentSortOrder, page = i }, new { @class = "btn btn-primary" })
+        <text>&nbsp;</text>
     }
     else
     {
-        <a asp-action="Index" asp-route-page="@i" class="btn btn-outline-info">@i</a>
+        @Html.ActionLink("" + i, "Index", new { sortOrder = Model.CurrentSortOrder, page = i }, new { @class = "btn btn-outline-info" })
+        <text>&nbsp;</text>
     }
 }
-
 @if (Model.LastPage != Model.LastPageShow)
 {
-    <a asp-action="Index" asp-route-page="@Model.LastPage" class="btn btn-outline-warning">@Model.LastPage</a>
+    @Html.ActionLink("" + Model.LastPage, "Index", new { sortOrder = Model.CurrentSortOrder, page = Model.LastPage }, new { @class = "btn btn-outline-warning" })
 }
