@@ -14,5 +14,6 @@ namespace GestaoTarefasIPG.Models
         public int LastPageShow { get; set; }
         public int FirstPage { get; set; }
         public int LastPage { get; set; }
+        public string CurrentSortOrder { get; set; }
     }
 }
