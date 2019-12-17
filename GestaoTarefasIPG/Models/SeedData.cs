@@ -143,11 +143,11 @@ namespace GestaoTarefasIPG.Models
             if (db.Cargo.Any()) return;
 
             db.Cargo.AddRange(
-                new Cargo { NomeCargo = "Presidente", NivelCargo = "4" },
-                new Cargo { NomeCargo = "Professor", NivelCargo = "2" },
-                new Cargo { NomeCargo = "Funcionario Limpezas", NivelCargo = "1" },
-                new Cargo { NomeCargo = "Segurança", NivelCargo = "1" },
-                new Cargo { NomeCargo = "Funcionario Secretaria", NivelCargo = "2" }
+                new Cargo { NomeCargo = "Presidente" },
+                new Cargo { NomeCargo = "Professor" },
+                new Cargo { NomeCargo = "Funcionario Limpezas"},
+                new Cargo { NomeCargo = "Segurança"},
+                new Cargo { NomeCargo = "Funcionario Secretaria"}
             );
 
             db.SaveChanges();

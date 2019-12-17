@@ -11,9 +11,8 @@ namespace GestaoTarefasIPG.Models
     {
         public int CargoID { get; set; }
         [Required(ErrorMessage = "Por favor, insira um nome")]
+        [StringLength(248)]
         public string NomeCargo { get; set; }
-        [Required(ErrorMessage = "Por favor, insira um nivel para o cargo")]
-        [RegularExpression(@"([1-4])", ErrorMessage = "Por favor insira um nivel válido")]
-        public string NivelCargo { get; set; }
+       
     }
 }
