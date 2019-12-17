@@ -155,7 +155,7 @@ namespace GestaoTarefasIPG.Controllers
             var servico = await _context.Servico.FindAsync(id);
             _context.Servico.Remove(servico);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View("Sucesso");
         }
 
         private bool ServicoExists(int id)

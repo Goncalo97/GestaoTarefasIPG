@@ -10,7 +10,7 @@ namespace GestaoTarefasIPG.Models
     {
         public int ServicoId { get; set; }
         [Required(ErrorMessage = "Por favor insira um nome")]
-        [RegularExpression(@"([a-z A-z]+)", ErrorMessage = "Por favor insira um no")]
+        [StringLength(200)]
         public string Nome { get; set; }
     }
 }
