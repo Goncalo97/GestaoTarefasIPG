@@ -13,15 +13,41 @@ namespace GestaoTarefasIPG.Controllers
     {
         private readonly GestaoTarefasIPGDbContext _context;
 
+
+        private const int NUMBER_OF_PRODUCTS_PER_PAGE = 10;
+        private const int NUMBER_OF_PAGES_BEFORE_AND_AFTER = 1;
+
         public CargosController(GestaoTarefasIPGDbContext context)
         {
             _context = context;
         }
 
         // GET: Cargos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, string sortOrder = null)
         {
-            return View(await _context.Cargo.ToListAsync());
+            decimal numberProducts = _context.Cargo.Count();
+            CargosViewModel vm = new CargosViewModel
+            {
+                Cargos = _context.Cargo
+                .Take((int)numberProducts),
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_OF_PRODUCTS_PER_PAGE),
+                FirstPageShow = Math.Max(2, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),
+            };
+            switch (sortOrder)
+            {
+                case "Nome":
+                    vm.Cargos = vm.Cargos.OrderBy(p => p.NomeCargo); // ascending by default
+                    vm.CurrentSortOrder = "Nome";
+                    break;
+              
+            }
+            vm.Cargos = vm.Cargos.Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE);
+            vm.Cargos = vm.Cargos.Take(NUMBER_OF_PRODUCTS_PER_PAGE);
+            vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_OF_PAGES_BEFORE_AND_AFTER);
+            vm.FirstPage = 1;
+            vm.LastPage = vm.TotalPages;
+            return View(vm);
         }
 
         // GET: Cargos/Details/5
