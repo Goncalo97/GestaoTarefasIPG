@@ -7,11 +7,11 @@
 <h1>Escolas</h1>
 
 <p>
-    <a asp-action="Create">Criar Novo</a>
+    <a asp-action="Create" class="btn btn-dark">Criar Novo</a>
 </p>
 
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th scope="col">
                 @Html.ActionLink("Nome:", "Index", new { sortOrder = "Nome", page = Model.CurrentPage })
@@ -39,9 +39,9 @@
                     @Html.DisplayFor(modelItem => item.Descricao)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.EscolaID">Alterar</a> |
-                    <a asp-action="Details" asp-route-id="@item.EscolaID">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.EscolaID">Eliminar</a>
+                    <a asp-action="Edit" asp-route-id="@item.EscolaID" class="btn btn-secondary">Alterar</a> |
+                    <a asp-action="Details" asp-route-id="@item.EscolaID" class="btn btn-secondary">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EscolaID" class="btn btn-danger">Eliminar</a>
                 </td>
             </tr>
         }

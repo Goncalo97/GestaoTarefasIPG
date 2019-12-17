@@ -6,15 +6,18 @@
 
 <h1>Cargos</h1>
 <p>
-    <a asp-action="Create">Criar Novo</a>
+    <a asp-action="Create" class="btn btn-dark">Criar Novo</a>
 </p>
 
 
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th scope="col">
                 @Html.ActionLink("Nome:", "Index", new { sortOrder = "Nome", page = Model.CurrentPage })
+            </th>
+            <th>
+
             </th>
         </tr>
     </thead>
@@ -26,9 +29,9 @@
                     @Html.DisplayFor(modelItem => item.NomeCargo)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.CargoID">Alterar</a> |
-                    <a asp-action="Details" asp-route-id="@item.CargoID">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.CargoID">Eliminar</a>
+                    <a asp-action="Edit" asp-route-id="@item.CargoID" class="btn btn-secondary">Alterar</a> |
+                    <a asp-action="Details" asp-route-id="@item.CargoID" class="btn btn-secondary">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CargoID" class="btn btn-danger">Eliminar</a>
                 </td>
             </tr>
         }
