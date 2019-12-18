@@ -22,7 +22,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Escolas
-        public IActionResult Index(int page = 1, string sortOrder = null)
+        public IActionResult Index(int page = 1, string sortOrder = null, string searchString = null, string searchOption = null)
         {
             decimal numberProducts = _context.Escola.Count();
             EscolasViewModel vm = new EscolasViewModel 
@@ -33,6 +33,34 @@ namespace GestaoTarefasIPG.Controllers
                 TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_OF_PRODUCTS_PER_PAGE),
                 FirstPageShow = Math.Max(2, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),      
             };
+            var searchOptionList = new List<string>();
+
+            searchOptionList.Add("Nome");
+            searchOptionList.Add("Localizacao");
+            searchOptionList.Add("Descricao");
+
+            ViewBag.searchOption = new SelectList(searchOptionList);
+
+            // TODO: Evaluate for case insensitive
+            if (!String.IsNullOrEmpty(searchString) && !String.IsNullOrEmpty(searchOption))
+            {
+                vm.CurrentSearchString = searchString;
+                switch (searchOption)
+                {
+                    case "Nome":
+                        vm.Escolas = vm.Escolas.Where(p => p.Nome.Contains(searchString));
+                        vm.CurrentSearchOption = "Nome";
+                        break;
+                    case "Localizacao":
+                        vm.Escolas = vm.Escolas.Where(p => p.Localizacao.Contains(searchString));
+                        vm.CurrentSearchOption = "Localizacao";
+                        break;
+                    case "Descricao":
+                        vm.Escolas = vm.Escolas.Where(p => p.Descricao.Contains(searchString));
+                        vm.CurrentSearchOption = "Descricao";
+                        break;
+                }
+            }
             switch (sortOrder)
             {
                 case "Nome":
@@ -48,6 +76,7 @@ namespace GestaoTarefasIPG.Controllers
                     vm.CurrentSortOrder = "Descricao";
                     break;
             }
+            vm.TotalPages = (int)Math.Ceiling((decimal)vm.Escolas.Count() / NUMBER_OF_PRODUCTS_PER_PAGE);
             vm.Escolas = vm.Escolas.Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE);
             vm.Escolas = vm.Escolas.Take(NUMBER_OF_PRODUCTS_PER_PAGE);
             vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_OF_PAGES_BEFORE_AND_AFTER);
