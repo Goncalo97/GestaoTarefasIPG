@@ -23,7 +23,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos
-        public async Task<IActionResult> Index(int page = 1, string sortOrder = null)
+        public async Task<IActionResult> Index(int page = 1, string sortOrder = null, string searchString = null, string searchOption = null)
         {
             decimal numberProducts = _context.Cargo.Count();
             CargosViewModel vm = new CargosViewModel
@@ -34,7 +34,24 @@ namespace GestaoTarefasIPG.Controllers
                 TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_OF_PRODUCTS_PER_PAGE),
                 FirstPageShow = Math.Max(2, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),
             };
-            switch (sortOrder)
+            var searchOptionList = new List<string>();
+            searchOptionList.Add("Nome");
+
+            ViewBag.searchOption = new SelectList(searchOptionList);
+
+            if (!String.IsNullOrEmpty(searchString) && !String.IsNullOrEmpty(searchOption))
+            {
+                vm.CurrentSearchString = searchString;
+                switch (searchOption)
+                {
+                    case "Nome":
+                        vm.Cargos = vm.Cargos.Where(p => p.NomeCargo.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
+                        vm.CurrentSearchOption = "Nome";
+                        break;
+                }
+            }
+
+                        switch (sortOrder)
             {
                 case "Nome":
                     vm.Cargos = vm.Cargos.OrderBy(p => p.NomeCargo); // ascending by default
@@ -81,11 +98,16 @@ namespace GestaoTarefasIPG.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CargoID,NomeCargo,NivelCargo")] Cargo cargo)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(cargo);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View("Sucesso");
+            }
+            else if (!ModelState.IsValid)
+            {
+                return View("Erro");
             }
             return View(cargo);
         }
@@ -136,7 +158,7 @@ namespace GestaoTarefasIPG.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return View("Sucesso");
             }
             return View(cargo);
         }
@@ -167,7 +189,7 @@ namespace GestaoTarefasIPG.Controllers
             var cargo = await _context.Cargo.FindAsync(id);
             _context.Cargo.Remove(cargo);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View("Sucesso");
         }
 
         private bool CargoExists(int id)
