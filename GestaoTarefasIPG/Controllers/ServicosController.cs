@@ -37,14 +37,13 @@ namespace GestaoTarefasIPG.Controllers
             searchOptionList.Add("Nome");
             ViewBag.searchOption = new SelectList(searchOptionList);
 
-            // TODO: Evaluate for case insensitive
             if (!String.IsNullOrEmpty(searchString) && !String.IsNullOrEmpty(searchOption))
             {
                 vm.CurrentSearchString = searchString;
                 switch (searchOption)
                 {
                     case "Nome":
-                        vm.Servicos = vm.Servicos.Where(p => p.Nome.Contains(searchString));
+                        vm.Servicos = vm.Servicos.Where(p => p.Nome.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
                         vm.CurrentSearchOption = "Nome";
                         break;
                 }
