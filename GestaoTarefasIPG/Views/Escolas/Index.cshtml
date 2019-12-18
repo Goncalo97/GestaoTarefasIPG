@@ -4,72 +4,112 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Escolas</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-dark">Criar Novo</a>
-</p>
-
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">
-                @Html.ActionLink("Nome:", "Index", new { sortOrder = "Nome", page = Model.CurrentPage })
-            </th>
-            <th scope="col">
-                @Html.ActionLink("Localização:", "Index", new { sortOrder = "Localizacao", page = Model.CurrentPage })
-            </th>
-            <th scope="col">
-                @Html.ActionLink("Descrição:", "Index", new { sortOrder = "Descricao", page = Model.CurrentPage })
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Escolas)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Localizacao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descricao)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.EscolaID" class="btn btn-secondary">Alterar</a> |
-                    <a asp-action="Details" asp-route-id="@item.EscolaID" class="btn btn-secondary">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.EscolaID" class="btn btn-danger">Eliminar</a>
-                </td>
-            </tr>
+<div style="width: 100%; height: 80px">
+    <h1 style="float: left">Escolas</h1>
+    
+        <!-- Topbar -->
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="float: right; border-radius: .35rem">
+    @using (Html.BeginForm("Index", "Escolas", FormMethod.Get))
+    {
+        <!-- Topbar Search -->
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                @Html.DropDownList("searchOption", null, "Escolher:", new { @style = "border-radius: .35rem" })
+                &nbsp;
+                <!--<input type="text" class="form-control bg-light border-0 small" placeholder="Procure por..." aria-label="Search" aria-describedby="basic-addon2">-->
+                @Html.TextBox("searchString", null, null, new { @class = "form-control bg-light border-0 small", @style = "border-readius: .35rem", @placeholder = "Procure por ..." })
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
         }
-    </tbody>
-</table>
+    </nav>
+</div>
 
-<p>First = @Model.FirstPageShow</p>
-<p>Last = @Model.LastPageShow</p>
+    <p>
+        <a asp-action="Create" class="btn btn-dark">Criar Novo</a>
+    </p>
 
-@if (Model.FirstPage != Model.FirstPageShow)
-{
-    @Html.ActionLink("" + Model.FirstPage, "Index", new { sortOrder = Model.CurrentSortOrder, page = Model.FirstPage }, new { @class = "btn btn-secondary btn-outline-danger" })
-}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">
+                    @Html.ActionLink("Nome:", "Index", new { 
+                        sortOrder = "Nome", page = Model.CurrentPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString 
+                    })
+                </th>
+                <th scope="col">
+                    @Html.ActionLink("Localização:", "Index", new { 
+                        sortOrder = "Localizacao", page = Model.CurrentPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString 
+                    })
+                </th>
+                <th scope="col">
+                    @Html.ActionLink("Descrição:", "Index", new { 
+                        sortOrder = "Descricao", page = Model.CurrentPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString 
+                    })
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Escolas)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Localizacao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.EscolaID" class="btn btn-secondary">Alterar</a> |
+                        <a asp-action="Details" asp-route-id="@item.EscolaID" class="btn btn-secondary">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.EscolaID" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-@for (int i = Model.FirstPageShow; i <= Model.LastPageShow; i++)
-{
-    @if (i == Model.CurrentPage)
+@*
+// TODO: Alter the functioning of the pagination interface 
+*@
+    <p>First = @Model.FirstPageShow</p>
+    <p>Last = @Model.LastPageShow</p>
+
+    @if (Model.FirstPage != Model.FirstPageShow)
     {
-        @Html.ActionLink("" + i, "#", new { sortOrder = Model.CurrentSortOrder, page = i }, new { @class = "btn btn-danger" })
-        <text>&nbsp;</text>
+        @Html.ActionLink("" + Model.FirstPage, "Index", new {
+            sortOrder = Model.CurrentSortOrder, page = Model.FirstPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString
+        }, new { @class = "btn btn-outline-warning" })
     }
-    else
+
+    @for (int i = Model.FirstPageShow; i <= Model.LastPageShow; i++)
     {
-        @Html.ActionLink("" + i, "Index", new { sortOrder = Model.CurrentSortOrder, page = i }, new { @class = "btn btn-secondary" })
-        <text>&nbsp;</text>
+        @if (i == Model.CurrentPage)
+        {
+            @Html.ActionLink("" + i, "#", new { 
+                sortOrder = Model.CurrentSortOrder, page = i, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString
+            }, new { @class = "btn btn-primary" })
+            <text>&nbsp;</text>
+        }
+        else
+        {
+            @Html.ActionLink("" + i, "Index", new { 
+                sortOrder = Model.CurrentSortOrder, page = i, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString
+            }, new { @class = "btn btn-outline-info" })
+            <text>&nbsp;</text>
+        }
     }
-}
-@if (Model.LastPage != Model.LastPageShow)
-{
-    @Html.ActionLink("" + Model.LastPage, "Index", new { sortOrder = Model.CurrentSortOrder, page = Model.LastPage }, new { @class = "btn btn-secondary" })
-}
+    @if (Model.LastPage != Model.LastPageShow)
+    {
+        @Html.ActionLink("" + Model.LastPage, "Index", new { 
+            sortOrder = Model.CurrentSortOrder, page = Model.LastPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString
+        }, new { @class = "btn btn-outline-warning" })
+    }
