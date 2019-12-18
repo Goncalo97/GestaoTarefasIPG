@@ -101,6 +101,10 @@ namespace GestaoTarefasIPG.Controllers
                 await _context.SaveChangesAsync();
                 return View("Sucesso");
             }
+            else if (!ModelState.IsValid)
+            {
+                return View("Erro");
+            }
             return View(servico);
         }
 
@@ -150,7 +154,7 @@ namespace GestaoTarefasIPG.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return View("Sucesso");
             }
             return View(servico);
         }
