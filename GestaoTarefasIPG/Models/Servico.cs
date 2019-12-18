@@ -11,6 +11,7 @@ namespace GestaoTarefasIPG.Models
         public int ServicoId { get; set; }
         [Required(ErrorMessage = "Por favor insira um nome")]
         [StringLength(200)]
+        [Display(Name = "Nome:")]
         public string Nome { get; set; }
     }
 }
