@@ -53,23 +53,23 @@
 
 @if (Model.FirstPage != Model.FirstPageShow)
 {
-    @Html.ActionLink("" + Model.FirstPage, "Index", new { sortOrder = Model.CurrentSortOrder, page = Model.FirstPage }, new { @class = "btn btn-outline-warning" })
+    @Html.ActionLink("" + Model.FirstPage, "Index", new { sortOrder = Model.CurrentSortOrder, page = Model.FirstPage }, new { @class = "btn btn-secondary btn-outline-danger" })
 }
 
 @for (int i = Model.FirstPageShow; i <= Model.LastPageShow; i++)
 {
     @if (i == Model.CurrentPage)
     {
-        @Html.ActionLink("" + i, "#", new { sortOrder = Model.CurrentSortOrder, page = i }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("" + i, "#", new { sortOrder = Model.CurrentSortOrder, page = i }, new { @class = "btn btn-danger" })
         <text>&nbsp;</text>
     }
     else
     {
-        @Html.ActionLink("" + i, "Index", new { sortOrder = Model.CurrentSortOrder, page = i }, new { @class = "btn btn-outline-info" })
+        @Html.ActionLink("" + i, "Index", new { sortOrder = Model.CurrentSortOrder, page = i }, new { @class = "btn btn-secondary" })
         <text>&nbsp;</text>
     }
 }
 @if (Model.LastPage != Model.LastPageShow)
 {
-    @Html.ActionLink("" + Model.LastPage, "Index", new { sortOrder = Model.CurrentSortOrder, page = Model.LastPage }, new { @class = "btn btn-outline-warning" })
+    @Html.ActionLink("" + Model.LastPage, "Index", new { sortOrder = Model.CurrentSortOrder, page = Model.LastPage }, new { @class = "btn btn-secondary" })
 }
