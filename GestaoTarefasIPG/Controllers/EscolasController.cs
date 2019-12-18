@@ -128,6 +128,7 @@ namespace GestaoTarefasIPG.Controllers
                 {
                     // aparece a mensagem de erro em baixo do input do Nome
                     ModelState.AddModelError("Nome", "Não é possível adicionar nomes repetidos.");
+                    return View(escola);
                 }
             } 
             else
