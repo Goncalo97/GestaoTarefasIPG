@@ -41,22 +41,21 @@ namespace GestaoTarefasIPG.Controllers
 
             ViewBag.searchOption = new SelectList(searchOptionList);
 
-            // TODO: Evaluate for case insensitive
             if (!String.IsNullOrEmpty(searchString) && !String.IsNullOrEmpty(searchOption))
             {
                 vm.CurrentSearchString = searchString;
                 switch (searchOption)
                 {
                     case "Nome":
-                        vm.Escolas = vm.Escolas.Where(p => p.Nome.Contains(searchString));
+                        vm.Escolas = vm.Escolas.Where(p => p.Nome.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
                         vm.CurrentSearchOption = "Nome";
                         break;
                     case "Localizacao":
-                        vm.Escolas = vm.Escolas.Where(p => p.Localizacao.Contains(searchString));
+                        vm.Escolas = vm.Escolas.Where(p => p.Localizacao.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
                         vm.CurrentSearchOption = "Localizacao";
                         break;
                     case "Descricao":
-                        vm.Escolas = vm.Escolas.Where(p => p.Descricao.Contains(searchString));
+                        vm.Escolas = vm.Escolas.Where(p => p.Descricao.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
                         vm.CurrentSearchOption = "Descricao";
                         break;
                 }
