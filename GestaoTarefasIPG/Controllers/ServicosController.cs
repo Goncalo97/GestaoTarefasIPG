@@ -13,8 +13,8 @@ namespace GestaoTarefasIPG.Controllers
     {
         private readonly GestaoTarefasIPGDbContext _context;
 
-        private const int NUMBER_OF_PRODUCTS_PER_PAGE = 15;
-        private const int NUMBER_OF_PAGES_BEFORE_AND_AFTER = 2;
+        private const int NUMBER_OF_PRODUCTS_PER_PAGE = 10;
+        private const int NUMBER_OF_PAGES_BEFORE_AND_AFTER = 1;
 
         public ServicosController(GestaoTarefasIPGDbContext context)
         {
@@ -22,19 +22,46 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Servicos
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(int page = 1, string sortOrder = null, string searchString = null, string searchOption = null)
         {
             decimal numberProducts = _context.Servico.Count();
             ServicosViewModel vm = new ServicosViewModel
             {
                 Servicos = _context.Servico
-                .Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE)
                 .Take(NUMBER_OF_PRODUCTS_PER_PAGE),
                 CurrentPage = page,
                 TotalPages = (int)Math.Ceiling(numberProducts / NUMBER_OF_PRODUCTS_PER_PAGE),
                 FirstPageShow = Math.Max(1, page - NUMBER_OF_PAGES_BEFORE_AND_AFTER),
             };
+            var searchOptionList = new List<string>();
+            searchOptionList.Add("Nome");
+            ViewBag.searchOption = new SelectList(searchOptionList);
+
+            // TODO: Evaluate for case insensitive
+            if (!String.IsNullOrEmpty(searchString) && !String.IsNullOrEmpty(searchOption))
+            {
+                vm.CurrentSearchString = searchString;
+                switch (searchOption)
+                {
+                    case "Nome":
+                        vm.Servicos = vm.Servicos.Where(p => p.Nome.Contains(searchString));
+                        vm.CurrentSearchOption = "Nome";
+                        break;
+                }
+            }
+            switch (sortOrder)
+            {
+                case "Nome":
+                    vm.Servicos = vm.Servicos.OrderBy(p => p.Nome); // ascending by default
+                    vm.CurrentSortOrder = "Nome";
+                    break;
+            }
+            vm.TotalPages = (int)Math.Ceiling((decimal)vm.Servicos.Count() / NUMBER_OF_PRODUCTS_PER_PAGE);
+            vm.Servicos = vm.Servicos.Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE);
+            vm.Servicos = vm.Servicos.Take(NUMBER_OF_PRODUCTS_PER_PAGE);
             vm.LastPageShow = Math.Min(vm.TotalPages, page + NUMBER_OF_PAGES_BEFORE_AND_AFTER);
+            vm.FirstPage = 1;
+            vm.LastPage = vm.TotalPages;
             return View(vm);
         }
 
