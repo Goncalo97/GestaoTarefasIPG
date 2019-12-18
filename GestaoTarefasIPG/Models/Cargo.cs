@@ -12,6 +12,7 @@ namespace GestaoTarefasIPG.Models
         public int CargoID { get; set; }
         [Required(ErrorMessage = "Por favor, insira um nome")]
         [StringLength(248)]
+        [Display(Name ="Nome:")]
         public string NomeCargo { get; set; }
        
     }
