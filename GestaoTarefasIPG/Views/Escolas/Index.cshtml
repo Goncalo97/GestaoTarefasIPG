@@ -87,7 +87,7 @@
     {
         @Html.ActionLink("" + Model.FirstPage, "Index", new {
             sortOrder = Model.CurrentSortOrder, page = Model.FirstPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString
-        }, new { @class = "btn btn-outline-warning" })
+        }, new { @class = "btn btn-secondary" })
     }
 
     @for (int i = Model.FirstPageShow; i <= Model.LastPageShow; i++)
@@ -96,14 +96,14 @@
         {
             @Html.ActionLink("" + i, "#", new { 
                 sortOrder = Model.CurrentSortOrder, page = i, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString
-            }, new { @class = "btn btn-primary" })
+            }, new { @class = "btn btn-dark" })
             <text>&nbsp;</text>
         }
         else
         {
             @Html.ActionLink("" + i, "Index", new { 
                 sortOrder = Model.CurrentSortOrder, page = i, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString
-            }, new { @class = "btn btn-outline-info" })
+            }, new { @class = "btn btn-secondary" })
             <text>&nbsp;</text>
         }
     }
@@ -111,5 +111,5 @@
     {
         @Html.ActionLink("" + Model.LastPage, "Index", new { 
             sortOrder = Model.CurrentSortOrder, page = Model.LastPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString
-        }, new { @class = "btn btn-outline-warning" })
+        }, new { @class = "btn btn-secondary" })
     }
