@@ -39,17 +39,17 @@
                 <th scope="col">
                     @Html.ActionLink("Nome:", "Index", new { 
                         sortOrder = "Nome", page = Model.CurrentPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString 
-                    })
+                    }, new { @style = "color: white"})
                 </th>
                 <th scope="col">
                     @Html.ActionLink("Localização:", "Index", new { 
                         sortOrder = "Localizacao", page = Model.CurrentPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString 
-                    })
+                    }, new { @style = "color: white"})
                 </th>
                 <th scope="col">
                     @Html.ActionLink("Descrição:", "Index", new { 
                         sortOrder = "Descricao", page = Model.CurrentPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString 
-                    })
+                    }, new { @style = "color: white"})
                 </th>
                 <th></th>
             </tr>
