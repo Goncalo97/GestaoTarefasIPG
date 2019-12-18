@@ -44,7 +44,7 @@
                     page = Model.CurrentPage,
                     searchOption = Model.CurrentSearchOption,
                     searchString = Model.CurrentSearchString
-                })
+                }, new { @style = "color: white"})
             </th>
             <th>
 
@@ -76,7 +76,7 @@
         page = Model.FirstPageShow,
         searchOption = Model.CurrentSearchOption,
         searchString = Model.CurrentSearchString
-    }, new { @class = "btn btn-outline-warning" })
+    }, new { @class = "btn btn-secondary" })
 }
 
 @for (int i = Model.FirstPageShow; i <= Model.LastPageShow; i++)
@@ -89,7 +89,7 @@
             page = i,
             searchOption = Model.CurrentSearchOption,
             searchString = Model.CurrentSearchString
-            }, new { @class = "btn btn-primary" })
+            }, new { @class = "btn btn-dark"})
         <text>&nbsp;</text>
     }
     else
@@ -101,7 +101,7 @@
                 page = i,
                 searchOption = Model.CurrentSearchOption,
                 searchString = Model.CurrentSearchString
-            }, new { @class = "btn btn-outline-info" })
+            }, new { @class = "btn btn-secondary" })
             <text>&nbsp;</text>
         }
     }
@@ -113,6 +113,6 @@
             page = Model.LastPage,
             searchOption = Model.CurrentSearchOption,
             searchString = Model.CurrentSearchString
-        }, new { @class = "btn btn-outline-warning" })
+        }, new { @class = "btn btn-secondary"})
     }
 }
