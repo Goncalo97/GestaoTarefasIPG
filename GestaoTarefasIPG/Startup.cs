@@ -67,7 +67,7 @@ namespace GestaoTarefasIPG
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=HomeBeforeLogin}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
 
