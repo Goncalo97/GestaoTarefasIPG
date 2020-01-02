@@ -39,28 +39,44 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item" style="text-align:center;">
-                <a asp-controller="Home" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
-                    <i class="fa fa-home"></i>
-                    Home
-                </a>
-                <a asp-controller="Escolas" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
-                    <i class="fa fa-school"></i>
-                    Escolas
-                </a>
-                <a asp-controller="Cargos" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
-                    <i class="fa fa-mobile"></i>
-                    Cargos
-                </a>
-                <a asp-controller="Servicos" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
-                    <i class="fa fa-mobile"></i>
-                    Serviços
-                </a>
-                <!--
-                    <a asp-controller="Home" asp-action="About" class="btn btn-light btn-lg btn-block menu">
-                        <i class="fa fa-list-alt"></i>
-                        Sobre
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a asp-area="Identity" asp-page="/account/login" class="btn btn-light btn-lg btn-block menu">
+                        <i class="fa fa-home"></i>
+                        Login
                     </a>
-                -->
+                }
+                else
+                {
+                    <a asp-area="Identity" asp-page="/account/logout" class="btn btn-light btn-lg btn-block menu">
+                        <i class="fa fa-home"></i>
+                        Logout
+                    </a>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
+                        <i class="fa fa-home"></i>
+                        Home
+                    </a>
+                    <a asp-controller="Escolas" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
+                        <i class="fa fa-school"></i>
+                        Escolas
+                    </a>
+                    <a asp-controller="Cargos" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
+                        <i class="fa fa-mobile"></i>
+                        Cargos
+                    </a>
+                    <a asp-controller="Servicos" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
+                        <i class="fa fa-mobile"></i>
+                        Serviços
+                    </a>
+                }
+
+                <!--
+        <a asp-controller="Home" asp-action="About" class="btn btn-light btn-lg btn-block menu">
+            <i class="fa fa-list-alt"></i>
+            Sobre
+        </a>
+    -->
             </li>
 
             

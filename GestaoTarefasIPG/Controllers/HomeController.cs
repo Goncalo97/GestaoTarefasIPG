@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GestaoTarefasIPG.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GestaoTarefasIPG.Controllers
 {
@@ -17,7 +18,7 @@ namespace GestaoTarefasIPG.Controllers
         {
             _logger = logger;
         }
-
+        [Authorize]
         public IActionResult Index()
         {
             return View();
