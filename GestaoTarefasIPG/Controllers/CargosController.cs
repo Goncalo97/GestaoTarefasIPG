@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GestaoTarefasIPG.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GestaoTarefasIPG.Controllers
 {
@@ -23,6 +24,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos
+        
         public async Task<IActionResult> Index(int page = 1, string sortOrder = null, string searchString = null, string searchOption = null)
         {
             decimal numberProducts = _context.Cargo.Count();
@@ -68,6 +70,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos/Details/5
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -86,6 +89,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -96,6 +100,7 @@ namespace GestaoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("CargoID,NomeCargo,NivelCargo")] Cargo cargo)
         {
             
@@ -113,6 +118,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -133,6 +139,7 @@ namespace GestaoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("CargoID,NomeCargo,NivelCargo")] Cargo cargo)
         {
             if (id != cargo.CargoID)
@@ -164,6 +171,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -184,6 +192,7 @@ namespace GestaoTarefasIPG.Controllers
         // POST: Cargos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var cargo = await _context.Cargo.FindAsync(id);

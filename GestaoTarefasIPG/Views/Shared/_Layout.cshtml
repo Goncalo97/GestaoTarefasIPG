@@ -40,6 +40,17 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item" style="text-align:center;">
 
+                <a asp-controller="Home" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
+                    <i class="fa fa-home"></i>
+                    Home
+                </a>
+                <a asp-controller="Servicos" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
+                    <i class="fa fa-mobile"></i>
+                    Serviços
+                </a>
+
+
+
                 @if (!User.Identity.IsAuthenticated)
                 {
                     <a asp-area="Identity" asp-page="/account/login" class="btn btn-light btn-lg btn-block menu">
@@ -49,14 +60,6 @@
                 }
                 else
                 {
-                    <a asp-area="Identity" asp-page="/account/logout" class="btn btn-light btn-lg btn-block menu">
-                        <i class="fa fa-home"></i>
-                        Logout
-                    </a>
-                    <a asp-controller="Home" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
-                        <i class="fa fa-home"></i>
-                        Home
-                    </a>
                     <a asp-controller="Escolas" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
                         <i class="fa fa-school"></i>
                         Escolas
@@ -65,11 +68,15 @@
                         <i class="fa fa-mobile"></i>
                         Cargos
                     </a>
-                    <a asp-controller="Servicos" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
-                        <i class="fa fa-mobile"></i>
-                        Serviços
+                    <a asp-area="Identity" asp-page="/account/logout" class="btn btn-light btn-lg btn-block menu">
+                        <i class="fa fa-home"></i>
+                        Logout
                     </a>
                 }
+                <a asp-controller="Home" asp-action="Contactos" class="btn btn-light btn-lg btn-block menu">
+                    <i class="fa fa-book"></i>
+                    Contactos
+                </a>
 
                 <!--
         <a asp-controller="Home" asp-action="About" class="btn btn-light btn-lg btn-block menu">
