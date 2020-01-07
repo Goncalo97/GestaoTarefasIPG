@@ -37,6 +37,7 @@ namespace GestaoTarefasIPG.Controllers
             var searchOptionList = new List<string>();
 
             searchOptionList.Add("Nome");
+            searchOptionList.Add("Sigla");
             searchOptionList.Add("Localizacao");
             searchOptionList.Add("Descricao");
 
@@ -50,6 +51,10 @@ namespace GestaoTarefasIPG.Controllers
                     case "Nome":
                         vm.Escolas = vm.Escolas.Where(p => p.Nome.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
                         vm.CurrentSearchOption = "Nome";
+                        break;
+                    case "Sigla":
+                        vm.Escolas = vm.Escolas.Where(p => p.Sigla.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
+                        vm.CurrentSearchOption = "Sigla";
                         break;
                     case "Localizacao":
                         vm.Escolas = vm.Escolas.Where(p => p.Localizacao.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
@@ -66,6 +71,10 @@ namespace GestaoTarefasIPG.Controllers
                 case "Nome":
                     vm.Escolas = vm.Escolas.OrderBy(p => p.Nome); // ascending by default
                     vm.CurrentSortOrder = "Nome";
+                    break;
+                case "Sigla":
+                    vm.Escolas = vm.Escolas.OrderBy(p => p.Sigla);
+                    vm.CurrentSortOrder = "Sigla";
                     break;
                 case "Localizacao":
                     vm.Escolas = vm.Escolas.OrderBy(p => p.Localizacao);
@@ -115,7 +124,7 @@ namespace GestaoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EscolaID,Nome,Localizacao,Descricao")] Escola escola)
+        public async Task<IActionResult> Create([Bind("EscolaID,Nome,Sigla,Localizacao,Descricao")] Escola escola)
         {
             if (ModelState.IsValid)
             {
@@ -161,7 +170,7 @@ namespace GestaoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EscolaID,Nome,Localizacao,Descricao")] Escola escola)
+        public async Task<IActionResult> Edit(int id, [Bind("EscolaID,Nome,Sigla,Localizacao,Descricao")] Escola escola)
         {
             if (id != escola.EscolaID)
             {

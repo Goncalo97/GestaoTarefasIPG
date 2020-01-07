@@ -14,6 +14,8 @@ namespace GestaoTarefasIPG.Models
         [StringLength(248)]
         [Display(Name ="Nome:")]
         public string NomeCargo { get; set; }
-       
+        [Required]
+        public string role { get; set; }
+
     }
 }
