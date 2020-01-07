@@ -106,15 +106,24 @@ namespace GestaoTarefasIPG.Controllers
             
             if (ModelState.IsValid)
             {
-                _context.Add(cargo);
-                await _context.SaveChangesAsync();
-                return View("Sucesso");
+                // se isto for null é porque não encontrou nenhum registo na tabela Escola com o mesmo Nome
+                if (_context.Cargo.FirstOrDefault(m => m.NomeCargo == cargo.NomeCargo) == null)
+                {
+                    _context.Add(cargo);
+                    await _context.SaveChangesAsync();
+                    return View("Sucesso");
+                }
+                else
+                {
+                    // aparece a mensagem de erro em baixo do input do Nome
+                    ModelState.AddModelError("NomeCargo", "Não é possível adicionar nomes repetidos.");
+                    return View(cargo);
+                }
             }
-            else if (!ModelState.IsValid)
+            else
             {
                 return View("Erro");
             }
-            return View(cargo);
         }
 
         // GET: Cargos/Edit/5
@@ -151,8 +160,18 @@ namespace GestaoTarefasIPG.Controllers
             {
                 try
                 {
-                    _context.Update(cargo);
-                    await _context.SaveChangesAsync();
+                    // se isto for null é porque não encontrou nenhum registo na tabela Escola com o mesmo Nome
+                    if (_context.Cargo.FirstOrDefault(m => m.NomeCargo == cargo.NomeCargo) == null)
+                    {
+                        _context.Update(cargo);
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        // aparece a mensagem de erro em baixo do input do Nome
+                        ModelState.AddModelError("NomeCargo", "Não é possível adicionar nomes repetidos.");
+                        return View(cargo);
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -167,7 +186,11 @@ namespace GestaoTarefasIPG.Controllers
                 }
                 return View("Sucesso");
             }
-            return View(cargo);
+            else
+            {
+                return View("Erro");
+            }
+            
         }
 
         // GET: Cargos/Delete/5
