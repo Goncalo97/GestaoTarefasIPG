@@ -89,7 +89,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos/Create
-        [Authorize]
+        
         public IActionResult Create()
         {
             return View();
