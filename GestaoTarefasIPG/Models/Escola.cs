@@ -11,14 +11,21 @@ namespace GestaoTarefasIPG.Models
         public int EscolaID { get; set; }
 
         [Required]
-        [StringLength(248)]
+        [StringLength(80)]
         [Display(Name = "Nome:")]
         public String Nome { get; set; }
 
         [Required]
+        [StringLength(10)]
+        [Display(Name = "Sigla:")]
+        public String Sigla { get; set; }
+
+        [Required]
+        [StringLength(40)]
         [Display(Name = "Localização:")]
         public String Localizacao { get; set; }
 
+        [StringLength(100)]
         [Display(Name = "Descrição:")]
         public String Descricao { get; set; }
     }

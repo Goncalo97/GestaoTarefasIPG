@@ -37,19 +37,40 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">
-                    @Html.ActionLink("Nome:", "Index", new { 
-                        sortOrder = "Nome", page = Model.CurrentPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString 
-                    }, new { @style = "color: white"})
+                    @Html.ActionLink("Nome:", "Index", new
+                    {
+                        sortOrder = "Nome",
+                        page = Model.CurrentPage,
+                        searchOption = Model.CurrentSearchOption,
+                        searchString = Model.CurrentSearchString
+                    }, new { @style = "color: white" })
                 </th>
                 <th scope="col">
-                    @Html.ActionLink("Localização:", "Index", new { 
-                        sortOrder = "Localizacao", page = Model.CurrentPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString 
-                    }, new { @style = "color: white"})
+                    @Html.ActionLink("Sigla:", "Index", new
+                    {
+                        sortOrder = "Sigla",
+                        page = Model.CurrentPage,
+                        searchOption = Model.CurrentSearchOption,
+                        searchString = Model.CurrentSearchString
+                    }, new { @style = "color: white" })
                 </th>
                 <th scope="col">
-                    @Html.ActionLink("Descrição:", "Index", new { 
-                        sortOrder = "Descricao", page = Model.CurrentPage, searchOption = Model.CurrentSearchOption, searchString = Model.CurrentSearchString 
-                    }, new { @style = "color: white"})
+                    @Html.ActionLink("Localização:", "Index", new
+                    {
+                        sortOrder = "Localizacao",
+                        page = Model.CurrentPage,
+                        searchOption = Model.CurrentSearchOption,
+                        searchString = Model.CurrentSearchString
+                    }, new { @style = "color: white" })
+                </th>
+                <th scope="col">
+                    @Html.ActionLink("Descrição:", "Index", new
+                    {
+                        sortOrder = "Descricao",
+                        page = Model.CurrentPage,
+                        searchOption = Model.CurrentSearchOption,
+                        searchString = Model.CurrentSearchString
+                    }, new { @style = "color: white" })
                 </th>
                 <th></th>
             </tr>
@@ -57,22 +78,25 @@
         <tbody>
             @foreach (var item in Model.Escolas)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Localizacao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Descricao)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.EscolaID" class="btn btn-secondary">Alterar</a> |
-                        <a asp-action="Details" asp-route-id="@item.EscolaID" class="btn btn-secondary">Detalhes</a> |
-                        <a asp-action="Delete" asp-route-id="@item.EscolaID" class="btn btn-danger">Eliminar</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sigla)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Localizacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EscolaID" class="btn btn-secondary">Alterar</a> |
+                    <a asp-action="Details" asp-route-id="@item.EscolaID" class="btn btn-secondary">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EscolaID" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
