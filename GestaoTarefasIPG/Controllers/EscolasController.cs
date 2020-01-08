@@ -23,7 +23,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Escolas
-        public IActionResult Index(int page = 1, string sortOrder = null, string searchString = null, string searchOption = null)
+        public IActionResult Index(int page = 1, string sortOrder = "Nome", string searchString = null, string searchOption = null)
         {
             decimal numberProducts = _context.Escola.Count();
             EscolasViewModel vm = new EscolasViewModel 
@@ -66,24 +66,45 @@ namespace GestaoTarefasIPG.Controllers
                         break;
                 }
             }
+            ViewBag.NomeSortParm = sortOrder == "Nome" ? "Nome_Desc" : "Nome";
+            ViewBag.SiglaSortParm = sortOrder == "Sigla" ? "Sigla_Desc" : "Sigla";
+            ViewBag.LocalizacaoSortParm = sortOrder == "Localizacao" ? "Localizacao_Desc" : "Localizacao";
+            ViewBag.DescricaoSortParm = sortOrder == "Descricao" ? "Descricao_Desc" : "Descricao";
             switch (sortOrder)
             {
-                case "Nome":
-                    vm.Escolas = vm.Escolas.OrderBy(p => p.Nome); // ascending by default
-                    vm.CurrentSortOrder = "Nome";
+                case "Nome_Desc":
+                    vm.Escolas = vm.Escolas.OrderByDescending(p => p.Nome); 
+                    vm.CurrentSortOrder = "Nome_Desc";
                     break;
                 case "Sigla":
                     vm.Escolas = vm.Escolas.OrderBy(p => p.Sigla);
                     vm.CurrentSortOrder = "Sigla";
                     break;
+                case "Sigla_Desc":
+                    vm.Escolas = vm.Escolas.OrderByDescending(p => p.Sigla);
+                    vm.CurrentSortOrder = "Sigla_Desc";
+                    break;
                 case "Localizacao":
                     vm.Escolas = vm.Escolas.OrderBy(p => p.Localizacao);
                     vm.CurrentSortOrder = "Localizacao";
+                    break;
+                case "Localizacao_Desc":
+                    vm.Escolas = vm.Escolas.OrderByDescending(p => p.Localizacao);
+                    vm.CurrentSortOrder = "Localizacao_Desc";
                     break;
                 case "Descricao":
                     vm.Escolas = vm.Escolas.OrderBy(p => p.Descricao);
                     vm.CurrentSortOrder = "Descricao";
                     break;
+                case "Descricao_Desc":
+                    vm.Escolas = vm.Escolas.OrderByDescending(p => p.Descricao);
+                    vm.CurrentSortOrder = "Descricao_Desc";
+                    break;
+                default:
+                    vm.Escolas = vm.Escolas.OrderBy(p => p.Nome); // ascending by default
+                    vm.CurrentSortOrder = "Nome";
+                    break;
+
             }
             vm.TotalPages = (int)Math.Ceiling((decimal)vm.Escolas.Count() / NUMBER_OF_PRODUCTS_PER_PAGE);
             vm.Escolas = vm.Escolas.Skip((page - 1) * NUMBER_OF_PRODUCTS_PER_PAGE);

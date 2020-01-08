@@ -37,36 +37,68 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">
+                    @if (Model.CurrentSortOrder == "Nome")
+                    {
+                        <i class="fas fa-caret-up"></i>
+                    }
+                    else if (Model.CurrentSortOrder == "Nome_Desc")
+                    {
+                        <i class="fas fa-caret-down"></i>
+                    }
                     @Html.ActionLink("Nome:", "Index", new
                     {
-                        sortOrder = "Nome",
+                        sortOrder = ViewBag.NomeSortParm,
                         page = Model.CurrentPage,
                         searchOption = Model.CurrentSearchOption,
                         searchString = Model.CurrentSearchString
                     }, new { @style = "color: white" })
                 </th>
                 <th scope="col">
+                    @if (Model.CurrentSortOrder == "Sigla")
+                    {
+                        <i class="fas fa-caret-up"></i>
+                    }
+                    else if (Model.CurrentSortOrder == "Sigla_Desc")
+                    {
+                        <i class="fas fa-caret-down"></i>
+                    }
                     @Html.ActionLink("Sigla:", "Index", new
                     {
-                        sortOrder = "Sigla",
+                        sortOrder = ViewBag.SiglaSortParm,
                         page = Model.CurrentPage,
                         searchOption = Model.CurrentSearchOption,
                         searchString = Model.CurrentSearchString
                     }, new { @style = "color: white" })
                 </th>
                 <th scope="col">
+                    @if (Model.CurrentSortOrder == "Localizacao")
+                    {
+                        <i class="fas fa-caret-up"></i>
+                    }
+                    else if (Model.CurrentSortOrder == "Localizacao_Desc")
+                    {
+                        <i class="fas fa-caret-down"></i>
+                    }
                     @Html.ActionLink("Localização:", "Index", new
                     {
-                        sortOrder = "Localizacao",
+                        sortOrder = ViewBag.LocalizacaoSortParm,
                         page = Model.CurrentPage,
                         searchOption = Model.CurrentSearchOption,
                         searchString = Model.CurrentSearchString
                     }, new { @style = "color: white" })
                 </th>
                 <th scope="col">
+                    @if (Model.CurrentSortOrder == "Descricao")
+                    {
+                        <i class="fas fa-caret-up"></i>
+                    }
+                    else if (Model.CurrentSortOrder == "Descricao_Desc")
+                    {
+                        <i class="fas fa-caret-down"></i>
+                    }
                     @Html.ActionLink("Descrição:", "Index", new
                     {
-                        sortOrder = "Descricao",
+                        sortOrder = ViewBag.DescricaoSortParm,
                         page = Model.CurrentPage,
                         searchOption = Model.CurrentSearchOption,
                         searchString = Model.CurrentSearchString
