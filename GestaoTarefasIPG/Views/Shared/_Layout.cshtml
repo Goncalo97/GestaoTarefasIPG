@@ -104,7 +104,7 @@
                             <i class="fa fa-home"></i>
                             Criar Conta
                         </a>
-                        <a asp-area="Identity" asp-page="/account/logout" class="btn btn-light btn-lg" style="margin-left:auto">
+                        <a asp-area="Identity" asp-page="/account/logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" class="btn btn-light btn-lg" style="margin-left:auto">
                             <i class="fa fa-home"></i>
                             Logout
                         </a>
