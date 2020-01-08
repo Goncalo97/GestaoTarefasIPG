@@ -8,16 +8,18 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using GestaoTarefasIPG.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GestaoTarefasIPG.Models;
+using GestaoTarefasIPG.Data;
 
 namespace GestaoTarefasIPG
 {
     public class Startup
     {
+       
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,45 +33,55 @@ namespace GestaoTarefasIPG
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            
             services.AddControllersWithViews();
             services.AddRazorPages();
 
             services.AddDbContext<GestaoTarefasIPGDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("GestaoTarefasIPGDbContext")));
 
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+        public void Configure(
+            IApplicationBuilder app, 
+            IWebHostEnvironment env,
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager
+            ) {
 
-            app.UseRouting();
+                if (env.IsDevelopment())
+                {
+                    app.UseDeveloperExceptionPage();
+                    app.UseDatabaseErrorPage();
+                }
+                else
+                {
+                    app.UseExceptionHandler("/Home/Error");
+                    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                    app.UseHsts();
+                }
+                app.UseHttpsRedirection();
+                app.UseStaticFiles();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+                app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                app.UseAuthentication();
+                app.UseAuthorization();
+
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllerRoute(
+                        name: "default",
+                        pattern: "{controller=Home}/{action=Index}/{id?}");
+                    endpoints.MapRazorPages();
             });
+
+            SeedData.CreateRolesAsync(roleManager).Wait();
 
             if (env.IsDevelopment())
             {
@@ -77,7 +89,7 @@ namespace GestaoTarefasIPG
                 {
                     var db = serviceScope.ServiceProvider.GetService<GestaoTarefasIPGDbContext>();
 
-                    SeedData.Populate(db);
+                    SeedData.PopulateAsync(db);
                     SeedData.PopulateUsersAsync(userManager).Wait();
                 }
             }

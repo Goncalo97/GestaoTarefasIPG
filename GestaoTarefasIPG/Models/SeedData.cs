@@ -9,15 +9,15 @@ namespace GestaoTarefasIPG.Models
     public class SeedData
     {
         private const string ADMIN_ROLE = "admin";
-
         public const string SECRETARY_ROLE = "secretaria";
         public const string CLEANING_ROLE = "limpeza";
 
-        public static void Populate(GestaoTarefasIPGDbContext db)
+        public static async Task PopulateAsync(GestaoTarefasIPGDbContext db)
         {
             PopulateEscolas(db);
             PopulateCargos(db);
             PopulateServicos(db);
+
         }
 
         private static void PopulateEscolas(GestaoTarefasIPGDbContext db)
