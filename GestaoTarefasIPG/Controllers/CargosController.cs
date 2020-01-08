@@ -89,7 +89,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos/Create
-        
+        [Authorize(Roles ="admin")]
         public IActionResult Create()
         {
             return View();
@@ -100,7 +100,7 @@ namespace GestaoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([Bind("CargoID,NomeCargo,NivelCargo")] Cargo cargo)
         {
             
@@ -127,7 +127,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos/Edit/5
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -148,7 +148,7 @@ namespace GestaoTarefasIPG.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("CargoID,NomeCargo,NivelCargo")] Cargo cargo)
         {
             if (id != cargo.CargoID)
@@ -194,7 +194,7 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Cargos/Delete/5
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -215,7 +215,7 @@ namespace GestaoTarefasIPG.Controllers
         // POST: Cargos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var cargo = await _context.Cargo.FindAsync(id);
