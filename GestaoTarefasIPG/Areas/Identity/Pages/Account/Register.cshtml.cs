@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 
 namespace GestaoTarefasIPG.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    [Authorize(Roles ="admin")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -24,6 +24,7 @@ namespace GestaoTarefasIPG.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+        
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
