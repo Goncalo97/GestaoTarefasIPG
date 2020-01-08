@@ -78,6 +78,7 @@ namespace GestaoTarefasIPG
                     var db = serviceScope.ServiceProvider.GetService<GestaoTarefasIPGDbContext>();
 
                     SeedData.Populate(db);
+                    SeedData.PopulateUsersAsync(userManager).Wait();
                 }
             }
         }
