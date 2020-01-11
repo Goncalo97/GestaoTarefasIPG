@@ -23,25 +23,21 @@ namespace GestaoTarefasIPG.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        public async Task<IActionResult>  OnGet(string returnUrl = null)
+        public async Task<IActionResult> OnGet(string returnUrl = null)
         {
-            await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
-
-            if (returnUrl != null)
-            {
-                return LocalRedirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToPage();
-            }
+           return await WorksLogout(returnUrl);
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
+            return await WorksLogout(returnUrl);
+        }
+
+
+        private async Task<IActionResult> WorksLogout(string returnUrl)
+        {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+        _logger.LogInformation("User logged out.");
 
             if (returnUrl != null)
             {
@@ -50,7 +46,7 @@ namespace GestaoTarefasIPG.Areas.Identity.Pages.Account
             else
             {
                 return RedirectToPage();
-            }
+            }    
         }
     }
 }
