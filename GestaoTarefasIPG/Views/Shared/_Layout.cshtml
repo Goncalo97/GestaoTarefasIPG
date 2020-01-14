@@ -53,7 +53,7 @@
 
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    
+
                 }
                 else
                 {
@@ -64,6 +64,10 @@
                     <a asp-controller="Cargos" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
                         <i class="fa fa-mobile"></i>
                         Cargos
+                    </a>
+                    <a asp-controller="Funcionarios" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
+                        <i class="fa fa-mobile"></i>
+                        Funcionários
                     </a>
                 }
                 <a asp-controller="Home" asp-action="Contactos" class="btn btn-light btn-lg btn-block menu">
