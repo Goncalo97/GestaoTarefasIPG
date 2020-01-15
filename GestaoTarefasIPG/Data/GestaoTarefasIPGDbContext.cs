@@ -18,7 +18,11 @@ using GestaoTarefasIPG.Models;
 
         public DbSet<GestaoTarefasIPG.Models.Servico> Servico { get; set; }
 
+        public DbSet<GestaoTarefasIPG.Models.Funcionario> Funcionario { get; set; }
+
         public DbSet<GestaoTarefasIPG.Models.Departamento> Departamento { get; set; }
+
+
     /*
         protected override void OnModelCreating(Modelbuilder modelBuilder)
         {
@@ -48,5 +52,5 @@ using GestaoTarefasIPG.Models;
     }
 }
 
-        public DbSet<GestaoTarefasIPG.Models.Funcionario> Funcionario { get; set; }
-    }
+        
+    
