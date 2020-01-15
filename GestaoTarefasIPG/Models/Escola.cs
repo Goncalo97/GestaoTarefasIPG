@@ -28,5 +28,7 @@ namespace GestaoTarefasIPG.Models
         [StringLength(100)]
         [Display(Name = "Descrição:")]
         public String Descricao { get; set; }
+
+        public ICollection<Departamento> Departamentos { get; set; }
     }
 }

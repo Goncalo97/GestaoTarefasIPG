@@ -12,15 +12,16 @@ namespace GestaoTarefasIPG.Models
         public const string SECRETARY_ROLE = "secretaria";
         public const string CLEANING_ROLE = "limpeza";
 
-        public static async Task PopulateAsync(GestaoTarefasIPGDbContext db)
+        public static void Populate(GestaoTarefasIPGDbContext db)
         {
             PopulateEscolas(db);
             PopulateCargos(db);
             PopulateServicos(db);
+            PopulateDepartamentos(db);
 
         }
 
-        private static void PopulateEscolas(GestaoTarefasIPGDbContext db)
+        public static void PopulateEscolas(GestaoTarefasIPGDbContext db)
         {
             if (db.Escola.Any()) return;
 
@@ -65,43 +66,43 @@ namespace GestaoTarefasIPG.Models
                 new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "1", Descricao = "Onde se faz" }
                 */
 
-                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "Guarda", Descricao = "Onde se faz" },
-                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
-                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" },
-                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "Guarda", Descricao = "Onde se faz" },
-                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
-                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" },
-                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
-                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" },
-                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
-                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" },
-                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
-                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" },
-                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
-                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" },
-                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
-                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" },
-                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
-                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" },
-                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
-                new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
-                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" },
-                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Saúde", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se cura" },
+                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Sigla = "ESTG", Localizacao = "Seia", Descricao = "Onde se mistura" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se faz" },
+                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Saúde", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se cura" },
+                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Sigla = "ESTG", Localizacao = "Seia", Descricao = "Onde se mistura" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Saúde", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se cura" },
+                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Sigla = "ESTG", Localizacao = "Seia", Descricao = "Onde se mistura" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Saúde", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se cura" },
+                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Sigla = "ESTG", Localizacao = "Seia", Descricao = "Onde se mistura" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Saúde", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se cura" },
+                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Sigla = "ESTG", Localizacao = "Seia", Descricao = "Onde se mistura" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Saúde", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se cura" },
+                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Sigla = "ESTG", Localizacao = "Seia", Descricao = "Onde se mistura" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Saúde", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se cura" },
+                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Sigla = "ESTG", Localizacao = "Seia", Descricao = "Onde se mistura" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Saúde", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se cura" },
+                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Sigla = "ESTG", Localizacao = "Seia", Descricao = "Onde se mistura" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" },
+                new Escola { Nome = "Escola Superior de Saúde", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se cura" },
+                new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Sigla = "ESTG", Localizacao = "Seia", Descricao = "Onde se mistura" },
+                new Escola { Nome = "Escola Superior de Tecnologia e Gestão", Sigla = "ESTG", Localizacao = "Guarda", Descricao = "Onde se aprende" }/*,
                 new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
                 new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
                 new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" },
@@ -129,7 +130,7 @@ namespace GestaoTarefasIPG.Models
                 new Escola { Nome = "Escola Superior de Educação, Comunicação e Desporto", Localizacao = "Guarda", Descricao = "Onde se aprende" },
                 new Escola { Nome = "Escola Superior de Saúde", Localizacao = "Guarda", Descricao = "Onde se cura" },
                 new Escola { Nome = "Escola Superior de Turismo e Hotelaria", Localizacao = "Seia", Descricao = "Onde se mistura" }
-
+                */
             );
             db.SaveChanges();
         }
@@ -158,7 +159,7 @@ namespace GestaoTarefasIPG.Models
 
         }
 
-        private static void PopulateServicos(GestaoTarefasIPGDbContext db)
+        public static void PopulateServicos(GestaoTarefasIPGDbContext db)
         {
             if (db.Servico.Any()) return;
             db.Servico.AddRange(
@@ -168,7 +169,7 @@ namespace GestaoTarefasIPG.Models
             );
             db.SaveChanges();
         }
-        private static void PopulateCargos(GestaoTarefasIPGDbContext db)
+        public static void PopulateCargos(GestaoTarefasIPGDbContext db)
         {
             if (db.Cargo.Any()) return;
 
@@ -178,6 +179,21 @@ namespace GestaoTarefasIPG.Models
                 new Cargo { NomeCargo = "Funcionario Limpezas" },
                 new Cargo { NomeCargo = "Segurança" },
                 new Cargo { NomeCargo = "Funcionario Secretaria" }
+            );
+
+            db.SaveChanges();
+
+        }
+        public static void PopulateDepartamentos(GestaoTarefasIPGDbContext db)
+        {
+            if (db.Departamento.Any()) return;
+
+            db.Departamento.AddRange(
+                new Departamento { Nome = "Ciências Excactas e Experimentais", EscolaId = 1 },
+                new Departamento { Nome = "Engenharia e Tecnologia", EscolaId = 2 },
+                new Departamento { Nome = "Gestão e Economia", EscolaId = 2 },
+                new Departamento { Nome = "Informática", EscolaId = 2 },
+                new Departamento { Nome = "Línguas e Culturas", EscolaId = 3 }
             );
 
             db.SaveChanges();

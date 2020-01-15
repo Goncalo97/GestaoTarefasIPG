@@ -2,14 +2,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GestaoTarefasIPG.Migrations
 {
     [DbContext(typeof(GestaoTarefasIPGDbContext))]
-    partial class GestaoTarefasIPGDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200115145206_DepartamendoEscolaId")]
+    partial class DepartamendoEscolaId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,31 +86,6 @@ namespace GestaoTarefasIPG.Migrations
                     b.HasKey("EscolaID");
 
                     b.ToTable("Escola");
-                });
-
-            modelBuilder.Entity("GestaoTarefasIPG.Models.Funcionario", b =>
-                {
-                    b.Property<int>("FuncionarioID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(248)")
-                        .HasMaxLength(248);
-
-                    b.Property<string>("telemovel")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FuncionarioID");
-
-                    b.ToTable("Funcionario");
                 });
 
             modelBuilder.Entity("GestaoTarefasIPG.Models.Servico", b =>
