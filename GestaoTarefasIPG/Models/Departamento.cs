@@ -11,11 +11,14 @@ namespace GestaoTarefasIPG.Models
         public int DepartamentoId { get; set; }
 
         [Required]
+        [StringLength(40)]
+        [Display(Name = "Nome:")]
         public string Nome { get; set; }
 
-        //public Escola EscolaIdForeignKey { get; set; }
-
+        [Display(Name = "Escola:")]
         public Escola Escola { get; set; }
+
+        [Display(Name = "Escola:")]
         public int EscolaId { get; set; }
     }
 }
