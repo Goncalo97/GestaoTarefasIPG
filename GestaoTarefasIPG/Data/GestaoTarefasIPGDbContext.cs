@@ -22,6 +22,8 @@ using GestaoTarefasIPG.Models;
 
         public DbSet<GestaoTarefasIPG.Models.Departamento> Departamento { get; set; }
 
+        public DbSet<GestaoTarefasIPG.Models.Professor> Professor { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Relation 1 -> N
@@ -36,6 +38,13 @@ using GestaoTarefasIPG.Models;
             .HasOne(mm => mm.Escola)
             .WithMany(m => m.Departamentos)
             .HasForeignKey(mm => mm.EscolaId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Relation 1 -> N
+        modelBuilder.Entity<Professor>()
+            .HasOne(mm => mm.Departamento)
+            .WithMany(m => m.Professores)
+            .HasForeignKey(mm => mm.DepartamentoID)
             .OnDelete(DeleteBehavior.Cascade);
 
         base.OnModelCreating(modelBuilder);
