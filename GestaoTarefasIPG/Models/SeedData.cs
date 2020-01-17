@@ -18,7 +18,7 @@ namespace GestaoTarefasIPG.Models
             PopulateCargos(db);
             PopulateServicos(db);
             PopulateDepartamentos(db);
-
+            PopulateProfessores(db);
         }
 
         public static void PopulateEscolas(GestaoTarefasIPGDbContext db)
@@ -199,6 +199,20 @@ namespace GestaoTarefasIPG.Models
             db.SaveChanges();
 
         }
+
+        public static void PopulateProfessores(GestaoTarefasIPGDbContext db)
+        {
+            if (db.Professor.Any()) return;
+            db.Professor.AddRange(
+                new Professor { Nome = "Noel de Jesus Lopes", Email = "noel@ipg.pt", Telemovel = "912345678", Morada = "Escola Superior de Tecnologia e Gestão Av. Dr. Francisco Sá Carneiro, 50", DepartamentoID = 4},
+                new Professor { Nome = "Fernando Rodrigues", Email = "fmr@ipg.pt", Telemovel = "912345678", Morada = "Escola Superior de Tecnologia e Gestão Av. Dr. Francisco Sá Carneiro, 50", DepartamentoID = 4},
+                new Professor { Nome = "José Alberto Quitério Figueiredo", Email = "jfig@ipg.pt", Telemovel = "912345678", Morada = "Escola Superior de Tecnologia e Gestão Av. Dr. Francisco Sá Carneiro, 50", DepartamentoID = 4},
+                new Professor { Nome = "Carlos Carreto", Email = "ccarreto@ipg.pt", Telemovel = "912345678", Morada = "Escola Superior de Tecnologia e Gestão Av. Dr. Francisco Sá Carneiro, 50", DepartamentoID = 4},
+                new Professor { Nome = "José Carlos Fonseca", Email = "josefonseca@ipg.pt", Telemovel = "912345678", Morada = "Escola Superior de Tecnologia e Gestão Av. Dr. Francisco Sá Carneiro, 50", DepartamentoID = 4}
+            );
+            db.SaveChanges();
+        }
+
         public static async Task CreateRolesAsync(RoleManager<IdentityRole> roleManager)
         {
             //const string CAN_ADD_MENUS = "can_add_menus";
