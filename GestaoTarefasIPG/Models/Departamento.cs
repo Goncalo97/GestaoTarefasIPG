@@ -20,5 +20,7 @@ namespace GestaoTarefasIPG.Models
 
         [Display(Name = "Escola:")]
         public int EscolaId { get; set; }
+
+        public ICollection<Professor> Professores { get; set; }
     }
 }
