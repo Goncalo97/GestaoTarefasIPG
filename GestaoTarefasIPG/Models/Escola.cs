@@ -30,5 +30,6 @@ namespace GestaoTarefasIPG.Models
         public String Descricao { get; set; }
 
         public ICollection<Departamento> Departamentos { get; set; }
+        public ICollection<Funcionario> Funcionarios { get; set; }
     }
 }

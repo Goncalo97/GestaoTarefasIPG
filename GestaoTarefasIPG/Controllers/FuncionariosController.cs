@@ -122,6 +122,7 @@ namespace GestaoTarefasIPG.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
+            ViewData["EscolaId"] = new SelectList(_context.Escola, "EscolaID", "Nome");
             return View();
         }
 
@@ -131,7 +132,7 @@ namespace GestaoTarefasIPG.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Create([Bind("FuncionarioID,nome,email,telemovel")] Funcionario funcionario)
+        public async Task<IActionResult> Create([Bind("FuncionarioID,nome,email,telemovel,EscolaId")] Funcionario funcionario)
         {
             if (ModelState.IsValid)
             {
@@ -144,6 +145,7 @@ namespace GestaoTarefasIPG.Controllers
                 else
                 {
                     ModelState.AddModelError("Nome", "Não é possível adicionar nomes repetidos.");
+                    ViewData["EscolaId"] = new SelectList(_context.Escola, "EscolaID", "Nome", funcionario.EscolaId);
                     return View(funcionario);
                 }
             }

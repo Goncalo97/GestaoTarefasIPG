@@ -21,5 +21,8 @@ namespace GestaoTarefasIPG.Models
         [Phone]
         [Display(Name = "Telemovel:")]
         public string telemovel { get; set; }
+
+        public Escola Escola { get; set; }
+        public int EscolaId { get; set; }
     }
 }
