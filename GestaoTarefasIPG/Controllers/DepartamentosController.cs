@@ -23,7 +23,6 @@ namespace GestaoTarefasIPG.Controllers
         }
 
         // GET: Departamentos
-        [Authorize(Roles = "admin")]
         public IActionResult Index(int page = 1, string sortOrder = "Nome", string searchString = null, string searchOption = null)
         {
             decimal numberProducts = _context.Departamento.Count();

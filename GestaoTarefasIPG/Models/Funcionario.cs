@@ -12,15 +12,15 @@ namespace GestaoTarefasIPG.Models
         [Required(ErrorMessage = "Por favor, insira um nome")]
         [StringLength(248)]
         [Display(Name = "Nome:")]
-        public string nome { get; set; }
+        public string Nome { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email:")]
-        public string email { get; set; }
+        public string Email { get; set; }
         [Required]
         [Phone]
         [Display(Name = "Telemovel:")]
-        public string telemovel { get; set; }
+        public string Telemovel { get; set; }
 
         public Escola Escola { get; set; }
         public int EscolaId { get; set; }

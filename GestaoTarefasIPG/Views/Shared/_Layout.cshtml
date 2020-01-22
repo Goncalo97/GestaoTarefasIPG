@@ -48,7 +48,10 @@
                     <i class="fa fa-mobile"></i>
                     Serviços
                 </a>
-
+                <a asp-controller="Departamentos" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
+                    <i class="fa fa-mobile"></i>
+                    Departamentos
+                </a>
 
 
                 @if (!User.Identity.IsAuthenticated)
@@ -59,7 +62,7 @@
                 {
                     <a asp-controller="Escolas" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
                         <i class="fa fa-school"></i>
-                 l       Escolas
+                        l       Escolas
                     </a>
                     <a asp-controller="Cargos" asp-action="Index" class="btn btn-light btn-lg btn-block menu">
                         <i class="fa fa-mobile"></i>
