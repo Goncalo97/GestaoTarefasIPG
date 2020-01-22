@@ -47,15 +47,15 @@ namespace GestaoTarefasIPG.Controllers
                 switch (searchOption)
                 {
                     case "Nome":
-                        vm.Funcionarios = vm.Funcionarios.Where(p => p.nome.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
+                        vm.Funcionarios = vm.Funcionarios.Where(p => p.Nome.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
                         vm.CurrentSearchOption = "Nome";
                         break;
                     case "Email":
-                        vm.Funcionarios = vm.Funcionarios.Where(p => p.email.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
+                        vm.Funcionarios = vm.Funcionarios.Where(p => p.Email.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
                         vm.CurrentSearchOption = "Email";
                         break;
                     case "Telemovel":
-                        vm.Funcionarios = vm.Funcionarios.Where(p => p.telemovel.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
+                        vm.Funcionarios = vm.Funcionarios.Where(p => p.Telemovel.Contains(searchString, StringComparison.CurrentCultureIgnoreCase));
                         vm.CurrentSearchOption = "Telemovel";
                         break;
                 }
@@ -66,27 +66,27 @@ namespace GestaoTarefasIPG.Controllers
             switch (sortOrder)
             {
                 case "Nome_Desc":
-                    vm.Funcionarios = vm.Funcionarios.OrderByDescending(p => p.nome);
+                    vm.Funcionarios = vm.Funcionarios.OrderByDescending(p => p.Nome);
                     vm.CurrentSortOrder = "Nome_Desc";
                     break;
                 case "Email":
-                    vm.Funcionarios = vm.Funcionarios.OrderBy(p => p.email);
+                    vm.Funcionarios = vm.Funcionarios.OrderBy(p => p.Email);
                     vm.CurrentSortOrder = "Email";
                     break;
                 case "Email_Desc":
-                    vm.Funcionarios = vm.Funcionarios.OrderByDescending(p => p.email);
+                    vm.Funcionarios = vm.Funcionarios.OrderByDescending(p => p.Email);
                     vm.CurrentSortOrder = "Email_Desc";
                     break;
                 case "Telemovel":
-                    vm.Funcionarios = vm.Funcionarios.OrderBy(p => p.telemovel);
+                    vm.Funcionarios = vm.Funcionarios.OrderBy(p => p.Telemovel);
                     vm.CurrentSortOrder = "Localizacao";
                     break;
                 case "Telemovel_Desc":
-                    vm.Funcionarios = vm.Funcionarios.OrderByDescending(p => p.telemovel);
+                    vm.Funcionarios = vm.Funcionarios.OrderByDescending(p => p.Telemovel);
                     vm.CurrentSortOrder = "Telemovel_Desc";
                     break;
                 default:
-                    vm.Funcionarios = vm.Funcionarios.OrderBy(p => p.nome); // ascending by default
+                    vm.Funcionarios = vm.Funcionarios.OrderBy(p => p.Nome); // ascending by default
                     vm.CurrentSortOrder = "Nome";
                     break;
 
@@ -136,7 +136,7 @@ namespace GestaoTarefasIPG.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_context.Escola.FirstOrDefault(m => m.Nome == funcionario.nome) == null)
+                if (_context.Escola.FirstOrDefault(m => m.Nome == funcionario.Nome) == null)
                 {
                     _context.Add(funcionario);
                     await _context.SaveChangesAsync();
@@ -189,7 +189,7 @@ namespace GestaoTarefasIPG.Controllers
             {
                 try
                 {
-                    if (_context.Escola.FirstOrDefault(m => m.Nome == funcionario.nome) == null)
+                    if (_context.Escola.FirstOrDefault(m => m.Nome == funcionario.Nome) == null)
                     {
                         _context.Update(funcionario);
                         await _context.SaveChangesAsync();
